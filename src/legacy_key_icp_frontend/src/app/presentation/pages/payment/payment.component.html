@@ -1,0 +1,25 @@
+<section>
+  <h2>Service payment</h2>
+  <div>Address: {{wallterAddress}}</div>
+</section>
+<section>
+  <h4>Payment details</h4>
+  <form class="form">
+    <div class="row">
+      <label>Assigned plan:</label>
+      <span>PRO+</span>
+    </div>
+    <div class="row">
+      <label>Amount:</label>
+      <span>100 USDT</span>
+    </div>
+    <div class="row">
+      <label>Payment type:</label>
+      <span>Only</span>
+    </div>
+    <div class="footer">
+      <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+      <button type="submit" mat-raised-button color="primary" (click)="onPay()">Pay now</button>
+    </div>
+  </form>
+</section>

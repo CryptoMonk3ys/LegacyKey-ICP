@@ -1,0 +1,38 @@
+<header>
+  <h2><a href=""><img src="svg/legacy.svg" height="40"></a></h2>
+  <div class="flex-1 flex-center">
+    <div *ngIf="exchangeRate" class="right">{{exchangeRate}}</div>
+  </div>
+</header>
+<div class="page">
+  <router-outlet></router-outlet>
+</div>
+<footer>
+  <div class="wrapper">
+    <div class="menu">
+      <img src="svg/legacy.svg" height="40" class="filter-white">
+      <p >Solution for the legacy of your cryptocurrencies. Don't worry about the legacy of your crypto
+        assets</p>
+    </div>
+    <div class="menu">
+      <p class="title">Address</p>
+      <ul>
+        <li class="place">Lima, Perú</li>
+      </ul>
+    </div>
+    <div class="menu">
+      <p class="title">Links</p>
+      <ul>
+        <li><a href="https://dev.monkey.pe/legacy-key-web/landing/">About us</a></li>
+        <li><a href="https://dev.monkey.pe/legacy-key-web/landing/">Contact us</a></li>
+        <li><a href="pdf/tyc.pdf" target="_blank">Terms of service</a></li>
+      </ul>
+    </div>
+    <div class="menu">
+      <p class="title">News</p>
+      <ul class="none">
+        <li>We participate in the Vara Network Hackathon August 2024</li>
+      </ul>
+    </div>
+  </div>
+</footer>

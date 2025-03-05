@@ -1,0 +1,186 @@
+<section>
+  <mat-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="grantorFormGroup" label="Otorgante">
+      <form [formGroup]="grantorFormGroup" class="form">
+        <h3>Grantor details</h3>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="grantor_first_name"
+            placeholder="Write the name of the grantor here" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Surnames</mat-label>
+          <input matInput type="text" formControlName="grantor_last_name"
+            placeholder="Write the surnames of the grantor here" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>ID document</mat-label>
+          <input matInput type="text" formControlName="grantor_document_id"
+            placeholder="Grantor's identity document" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="grantor_email" placeholder="Grantor Email"
+            required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput type="text" formControlName="grantor_phonenumber"
+            placeholder="Cell phone number for contacts" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Amount to be kept</mat-label>
+          <input matInput type="text" formControlName="beneficiarys_amount" placeholder="Enter the amount to Custody"
+            required />
+        </mat-form-field>
+        <!-- <mat-form-field class="full-width" appearance="outline"> -->
+          <mat-checkbox formControlName="approveStaking">Approve for staking</mat-checkbox>
+        <!-- </mat-form-field> -->
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="beneficiariesFormGroup" label="Beneficiario">
+      <form [formGroup]="beneficiariesFormGroup" class="form">
+        <h3>Beneficiary details</h3>
+        <div formArrayName="beneficiaries">
+          <div *ngFor="let beneficiary of beneficiaryArr.controls; let idx = index" [formGroupName]="idx"
+            class="beneficiaries">
+            <h4>Beneficiary details {{idx+ 1}}</h4>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" formControlName="firstName"
+                placeholder="Write the name of the beneficiary here" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Surnames</mat-label>
+              <input matInput type="text" formControlName="lastName"
+                placeholder="Write the surnames of the beneficiary here" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" placeholder="Beneficiary email"
+                required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input matInput type="email" formControlName="phonenumber"
+                placeholder="Beneficiary Phone" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Amount</mat-label>
+              <input matInput type="email" formControlName="amount" placeholder="Enter the amount to inherit" required />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Cryptocurrency</mat-label>
+              <mat-select formControlName="token" required>
+                <mat-option value="USDT">USDT</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Send a wallet</mat-label>
+              <input matInput type="email" formControlName="walletAddress" placeholder="Search, public address or ENS"
+                required />
+            </mat-form-field>
+            <p>
+              <mat-checkbox formControlName="sendInfo">Send information to the heir upon completion of the creation of the
+                inheritance</mat-checkbox>
+            </p>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" (click)="onAddBeneficiary()">Add another beneficiary</button>
+        </div>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="validatorsFormGroup" label="Validador">
+      <form [formGroup]="validatorsFormGroup" class="form">
+        <h3>Validator data</h3>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Number of validators</mat-label>
+          <mat-select formControlName="validators_qty" (selectionChange)="onValidatorsQtyChange($event.value)" required>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="3">3</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Downtime</mat-label>
+          <mat-select formControlName="validator_inactivity_time" required>
+            <mat-option value="3">3 months</mat-option>
+            <mat-option value="6">6 months</mat-option>
+            <mat-option value="12">12 months</mat-option>
+            <mat-option value="18">18 months</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div formArrayName="validators">
+          <div *ngFor="let validator of validatorArr.controls; let idx = index" [formGroupName]="idx"
+            class="validators">
+            <h4>Beneficiary details {{idx+ 1}}</h4>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" formControlName="firstName" placeholder="Write the name of the validator here"
+                required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Surnames</mat-label>
+              <input matInput type="text" formControlName="lastName"
+                placeholder="Write the surnames of the validator here" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Wallet</mat-label>
+              <input matInput type="text" formControlName="walletAddress"
+                placeholder="Write the validator wallet here" required />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Sign">
+      <h3>Verify that the information is correct to be able to sign your inheritance.</h3>
+      <div>
+        <h4>Grantor details</h4>
+        <mat-card>
+          <p><b>Full name</b>: {{grantorFormGroup.value.grantor_first_name}} {{grantorFormGroup.value.grantor_last_name}}</p>
+          <p><b>ID document</b>: {{grantorFormGroup.value.grantor_document_id}}</p>
+          <p><b>Correo electrónico</b>: {{grantorFormGroup.value.grantor_email}}</p>
+          <p><b>Phone</b>: {{grantorFormGroup.value.grantor_phonenumber}}</p>
+        </mat-card>
+        <h4>Beneficiary details</h4>
+        <div>
+          <mat-card *ngFor="let beneficiary of beneficiariesFormGroup.value.beneficiaries; let idx = index">
+            <p><b>Full name</b>: {{beneficiary.firstName}} {{beneficiary.lastName}}</p>
+            <p><b>Email</b>: {{beneficiary.email}}</p>
+            <p><b>Phone</b>: {{beneficiary.phonenumber}}</p>
+            <p><b>Amount to inherit</b>: {{beneficiary.amount}} {{beneficiary.token}}</p>
+            <p><b>Wallet</b>: {{beneficiary.walletAddress}}</p>
+            <p><b>Send information</b>: {{beneficiary.sendInfo ? 'Si' : 'No'}}</p>
+          </mat-card>
+        </div>
+        <h4>Validator data</h4>
+        <div>
+          <p><b>Downtime (months)</b>: {{validatorsFormGroup.value.validator_inactivity_time}}</p>
+          <mat-card *ngFor="let validator of validatorsFormGroup.value.validators; let idx = index">
+            <p><b>Full Name</b>: {{validator.firstName}} {{validator.lastName}}</p>
+            <p><b>Email</b>: {{validator.email}}</p>
+            <p><b>Wallet</b>: {{validator.walletAddress}}</p>
+          </mat-card>
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+        <button mat-raised-button color="primary" (click)="savePress()">Save</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</section>

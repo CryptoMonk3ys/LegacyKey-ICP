@@ -9,7 +9,7 @@
         "legacy_key_icp_backend"
       ],
       "source": [
-        "src/legacy_key_icp_frontend/dist"
+        "src/legacy_key_icp_frontend/dist/legacy-key/browser/"
       ],
       "type": "assets",
       "workspace": "legacy_key_icp_frontend"
