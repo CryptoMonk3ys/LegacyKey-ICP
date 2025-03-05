@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "legacy_key_icp_backend": {
+      "main": "src/legacy_key_icp_backend/main.mo",
+      "type": "motoko"
+    },
+    "legacy_key_icp_frontend": {
+      "dependencies": [
+        "legacy_key_icp_backend"
+      ],
+      "source": [
+        "src/legacy_key_icp_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "legacy_key_icp_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
