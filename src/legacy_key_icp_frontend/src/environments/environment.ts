@@ -20,7 +20,7 @@ export const environment = {
   SClegacyAIRDAOt : "0x2d8177335648d4867D5d85CBf4d433bd4EcAD5Cb",
   SCairdaotUSDT : "0xB4C755E4844D0919426985D414c4b23634923416",
 
-  MOTOKO_CANISTER_BACKEND_ID: "be2us-64aaa-aaaaa-qaabq-cai",
+  MOTOKO_CANISTER_BACKEND_ID: "bd3sg-teaaa-aaaaa-qaaba-cai",
   MOTOKO_CANISTER_FRONTEND_ID: "", // No usado
   MOTOKO_CANISTER_HOST: "local"
 };
