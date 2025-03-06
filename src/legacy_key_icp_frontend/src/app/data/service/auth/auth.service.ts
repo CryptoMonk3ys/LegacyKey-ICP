@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MetamaskWalletService } from '../metamask-wallet/metamask-wallet.service';
 import { Web3Wallet } from '../../../domain/type/web3-wallet.type';
 import { Account } from '../../../domain/model/account.model';
+import { NfidWalletService } from '../nfid-wallet/nfid-wallet.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
   public accountAddress = this._accountAddress.asObservable();
 
   constructor(
-    private metamaskWallet: MetamaskWalletService
+    private metamaskWallet: MetamaskWalletService,
+    private nfidWalletService: NfidWalletService
   ) {
   }
 
@@ -23,6 +25,12 @@ export class AuthService {
       switch (wallet) {
         case "metamask": {
           const accounts = await this.metamaskWallet.connect();
+          this.setAccountAddress(accounts[0]);
+          resolve(accounts);
+          break;
+        }
+        case "NFID": {
+          const accounts = await this.nfidWalletService.connect();
           this.setAccountAddress(accounts[0]);
           resolve(accounts);
           break;

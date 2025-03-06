@@ -1,1 +1,1 @@
-export type Web3Wallet = "metamask";
+export type Web3Wallet = "metamask" | "NFID";
