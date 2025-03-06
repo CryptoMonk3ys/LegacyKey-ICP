@@ -8,9 +8,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
-  selector: 'app-cobro',
-  templateUrl: './cobro.component.html',
-  styleUrls: ['./cobro.component.scss']
+    selector: 'app-cobro',
+    templateUrl: './cobro.component.html',
+    styleUrls: ['./cobro.component.scss'],
+    standalone: false
 })
 export class CobroComponent implements OnInit {
   walletChain: Blockchain = "ethereum";

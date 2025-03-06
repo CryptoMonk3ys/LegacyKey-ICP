@@ -3,9 +3,10 @@ import { Router } from "@angular/router";
 import { LoginWeb3UseCase } from '../../../domain/usecase/login-web3.use-case';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+    selector: 'app-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.scss'],
+    standalone: false
 })
 export class MenuComponent implements OnInit {
   constructor(

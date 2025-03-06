@@ -8,9 +8,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
-  selector: 'app-voto',
-  templateUrl: './voto.component.html',
-  styleUrls: ['./voto.component.scss']
+    selector: 'app-voto',
+    templateUrl: './voto.component.html',
+    styleUrls: ['./voto.component.scss'],
+    standalone: false
 })
 export class VotoComponent implements OnInit {
   walletChain: Blockchain = "ethereum";

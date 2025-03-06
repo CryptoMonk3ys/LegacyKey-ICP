@@ -11,9 +11,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
-  selector: 'app-contract',
-  templateUrl: './contract.component.html',
-  styleUrls: ['./contract.component.scss']
+    selector: 'app-contract',
+    templateUrl: './contract.component.html',
+    styleUrls: ['./contract.component.scss'],
+    standalone: false
 })
 export class ContractComponent implements OnInit {
   walletChain: Blockchain = "ethereum";

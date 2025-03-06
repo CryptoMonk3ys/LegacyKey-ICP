@@ -56,9 +56,10 @@ const ELEMENT_DATA: Heir[] = [
 ];
 
 @Component({
-  selector: 'app-legacy',
-  templateUrl: './legacy.component.html',
-  styleUrls: ['./legacy.component.scss']
+    selector: 'app-legacy',
+    templateUrl: './legacy.component.html',
+    styleUrls: ['./legacy.component.scss'],
+    standalone: false
 })
 export class LegacyComponent implements OnInit {
   address = "";
@@ -165,8 +166,9 @@ export class LegacyComponent implements OnInit {
 }
 
 @Component({
-  selector: 'dialog-content-confirm-op-dialog',
-  templateUrl: 'dialog-content-confirm-op.html',
+    selector: 'dialog-content-confirm-op-dialog',
+    templateUrl: 'dialog-content-confirm-op.html',
+    standalone: false
 })
 export class DialogContentConfirmOpDialog {
   constructor(

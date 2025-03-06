@@ -7,9 +7,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+    selector: 'app-payment',
+    templateUrl: './payment.component.html',
+    styleUrls: ['./payment.component.scss'],
+    standalone: false
 })
 export class PaymentComponent implements OnInit {
   walletChain: Blockchain = "ethereum";
