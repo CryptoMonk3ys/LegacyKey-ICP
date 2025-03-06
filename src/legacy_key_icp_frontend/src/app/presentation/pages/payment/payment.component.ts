@@ -13,7 +13,7 @@ import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
     standalone: false
 })
 export class PaymentComponent implements OnInit {
-  walletChain: Blockchain = "ethereum";
+  walletChain: Blockchain = "icp";
   wallterAddress: string | null = null;
   asset = "usdt";
   amount = 100;
@@ -48,7 +48,6 @@ export class PaymentComponent implements OnInit {
   }
 
   async onPay() {
-
     if (this.wallterAddress == null) {
       return;
     }

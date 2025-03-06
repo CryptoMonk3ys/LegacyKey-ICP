@@ -1,1 +1,1 @@
-export type Blockchain = "ethereum";
+export type Blockchain = "ethereum" | "icp";

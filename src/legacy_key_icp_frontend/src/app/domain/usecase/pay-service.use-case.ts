@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
 import { UseCase } from "../base/use-case";
-import { AlgorandRepository } from "../repository/algorand.respository";
 import { Blockchain } from "../type/blockchain.type";
 import { Balance } from "../model/balance.model";
 import { EthereumRepository } from "../repository/ethereum.respository";
+import { IcpRepository } from "../repository/icp.respository";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PayServiceUseCase implements UseCase<PayServiceParams, void> {
   constructor(
-    private algoRepository: AlgorandRepository,
+    private icpRepository: IcpRepository,
     private ethRepository: EthereumRepository,
   ) {
 
@@ -24,6 +24,8 @@ export class PayServiceUseCase implements UseCase<PayServiceParams, void> {
       case "ethereum":
         //return this.ethRepository.pay(params.walletAddress, params.asset, params.amount);
         return this.ethRepository.payLegacyKeySC(params.walletAddress);
+      case "icp":
+        return this.icpRepository.payLegacyKeySC(params.walletAddress);
     }
     return Promise.resolve();
   }

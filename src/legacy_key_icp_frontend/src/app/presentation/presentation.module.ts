@@ -20,47 +20,55 @@ import { LoaderDialog } from './components/dialogs/loader/loader.dialog';
 import { ExchangeRepository } from '../domain/repository/exchange.repository';
 import { ExchangeService } from '../data/service/exchange/exchange.service';
 import { MenuComponent } from './pages/menu/menu.component';
+import { IcpRepository } from '../domain/repository/icp.respository';
+import { IcpService } from '../data/service/icp/icp.service';
 
-@NgModule({ declarations: [
-        LoginComponent,
-        MenuComponent,
-        DashboardComponent,
-        LegacyComponent,
-        DialogContentConfirmOpDialog,
-        PaymentComponent,
-        ContractComponent,
-        VotoComponent,
-        CobroComponent,
-        LoaderDialog
-    ],
-    exports: [
-        LoginComponent,
-        MenuComponent,
-        DashboardComponent,
-        LegacyComponent,
-        PaymentComponent,
-        ContractComponent,
-        VotoComponent,
-        CobroComponent,
-        LoaderDialog
-    ], imports: [CommonModule,
-        MaterialModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule], providers: [
-        {
-            provide: AlgorandRepository,
-            useClass: PureStakeService
-        },
-        {
-            provide: EthereumRepository,
-            useClass: EthereumService
-        },
-        {
-            provide: ExchangeRepository,
-            useClass: ExchangeService
-        },
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [
+    LoginComponent,
+    MenuComponent,
+    DashboardComponent,
+    LegacyComponent,
+    DialogContentConfirmOpDialog,
+    PaymentComponent,
+    ContractComponent,
+    VotoComponent,
+    CobroComponent,
+    LoaderDialog
+  ],
+  exports: [
+    LoginComponent,
+    MenuComponent,
+    DashboardComponent,
+    LegacyComponent,
+    PaymentComponent,
+    ContractComponent,
+    VotoComponent,
+    CobroComponent,
+    LoaderDialog
+  ], imports: [CommonModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule], providers: [
+      {
+        provide: AlgorandRepository,
+        useClass: PureStakeService
+      },
+      {
+        provide: EthereumRepository,
+        useClass: EthereumService
+      },
+      {
+        provide: ExchangeRepository,
+        useClass: ExchangeService
+      },
+      {
+        provide: IcpRepository,
+        useClass: IcpService
+      },
+      provideHttpClient(withInterceptorsFromDi())
+    ]
+})
 export class PresentationModule {
 }
