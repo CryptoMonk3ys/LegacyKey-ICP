@@ -6,8 +6,10 @@ import { Balance } from "../../../domain/model/balance.model";
 import { Asset } from "../../../domain/model/asset.model";
 import { Account } from "../../../domain/model/account.model";
 import { IcpRepository } from "../../../domain/repository/icp.respository";
-import * as backendIDL from '../../../../../../declarations/legacy_key_icp_backend'
+import * as backendIDL from '../../../../../../declarations/legacy_key_icp_backend';
 import { Actor } from "@dfinity/agent";
+import { /* PlugLogin, StoicLogin,  */NFIDLogin } from 'ic-auth';
+import { Validators } from "@angular/forms";
 
 declare let window: any;
 
@@ -51,6 +53,15 @@ export class IcpService extends IcpRepository {
 
   proofOfHumanity(address: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
+      const host = environment.MOTOKO_CANISTER_HOST;
+      const userObject = await NFIDLogin(); 
+      const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
+        agentOptions: ({
+          host: host,
+          callOptions: userObject,
+        })          
+      }); 
+      await actor.setPOH();
     });
   }
 
@@ -61,38 +72,59 @@ export class IcpService extends IcpRepository {
 
   payLegacyKeySC(address: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
-      const identity = await this.authClient?.getIdentity();
-      //Principal.from(identity?.getPrincipal()).toText();
       const host = environment.MOTOKO_CANISTER_HOST;
+      const userObject = await NFIDLogin(); 
       const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
-        agentOptions: {
-          host: host
-        },
-      });
-
-      /* const defaultAgent = Actor.agentOf(actor);
-      if(defaultAgent && identity) {
-        defaultAgent.replaceIdentity!(identity);
-      } */
-
-      //console.log("legacyActor", actor);
-      const whoami = await actor.whoami();
-      console.log("whoami", whoami.toText());
+        agentOptions: ({
+          host: host,
+          callOptions: userObject,
+        })          
+      }); 
+      await actor.setPay();
+            
     });
   }
 
   newMemberLegacyKeySC(address: string, amount: number, validators: any[], beneficiaries: any[]): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
+      const host = environment.MOTOKO_CANISTER_HOST;
+      const userObject = await NFIDLogin(); 
+      const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
+        agentOptions: ({
+          host: host,
+          callOptions: userObject,
+        })          
+      }); 
+      await actor.newMember(beneficiaries[0],validators[0],BigInt(amount),BigInt(10),BigInt(3));
     });
   }
 
-  voteValidador(address: string, idLegacy: string): Promise<void> {
+  voteValidador(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
+      const host = environment.MOTOKO_CANISTER_HOST;
+      const userObject = await NFIDLogin(); 
+      const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
+        agentOptions: ({
+          host: host,
+          callOptions: userObject,
+        })          
+      }); 
+      await actor.voteValidador();
     });
   }
 
-  withdrawHeir(address: string, idLegacy: string): Promise<void> {
+  withdrawHeir(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
+      const host = environment.MOTOKO_CANISTER_HOST;
+      const userObject = await NFIDLogin(); 
+      const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
+        agentOptions: ({
+          host: host,
+          callOptions: userObject,
+        })          
+      }); 
+      await actor.withDrawHeir();
+
     });
   }
 }

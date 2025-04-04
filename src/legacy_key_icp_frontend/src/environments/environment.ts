@@ -20,9 +20,9 @@ export const environment = {
   SClegacyAIRDAOt : "0x2d8177335648d4867D5d85CBf4d433bd4EcAD5Cb",
   SCairdaotUSDT : "0xB4C755E4844D0919426985D414c4b23634923416",
 
-  MOTOKO_CANISTER_BACKEND_ID: "bkyz2-fmaaa-aaaaa-qaaaq-cai",
+  MOTOKO_CANISTER_BACKEND_ID: "6rdnu-aiaaa-aaaap-qpzaq-cai",
   MOTOKO_CANISTER_FRONTEND_ID: "", // No usado
-  MOTOKO_CANISTER_HOST: "http://127.0.0.1:4943"
+  MOTOKO_CANISTER_HOST: "https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=6rdnu-aiaaa-aaaap-qpzaq-cai",//"http://127.0.0.1:4943"
 };
 
 /*
