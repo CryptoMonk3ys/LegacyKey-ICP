@@ -9,6 +9,7 @@
     "start": "ng serve",
     "prebuild": "dfx generate",
     "build": "ng build",
+    "build:prod": "ng build --base-href=https://legacykey.tech/frontend/dist/app/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "prettier --write \"src/**/*.{json,js,jsx,ts,tsx,css,scss}\""
