@@ -20,14 +20,18 @@ export class NfidWalletService extends WalletRepository {
     return new Promise<string[]>(async (resolve, reject) => {
       try {
         const host = environment.MOTOKO_CANISTER_HOST;
-        const userObject = await NFIDLogin(); 
+        const userObject = await NFIDLogin();
         const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
           agentOptions: ({
             host: host,
             callOptions: userObject,
-          })          
-        }); 
-        await actor.setPOH();
+          })
+        });
+        try {
+          await actor.setPOH();
+        } catch (err) {
+          console.log(err);
+        }
 
         resolve([userObject.principal]);
       } catch (err) {
