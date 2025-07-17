@@ -4,6 +4,7 @@ import { MetamaskWalletService } from '../metamask-wallet/metamask-wallet.servic
 import { Web3Wallet } from '../../../domain/type/web3-wallet.type';
 import { Account } from '../../../domain/model/account.model';
 import { NfidWalletService } from '../nfid-wallet/nfid-wallet.service';
+import { Web3AuthWalletService } from '../web3-auth-wallet/web3-auth-wallet.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(
     private metamaskWallet: MetamaskWalletService,
-    private nfidWalletService: NfidWalletService
+    private nfidWalletService: NfidWalletService,
+    private web3AuthWalletService: Web3AuthWalletService
   ) {
   }
 
@@ -31,6 +33,12 @@ export class AuthService {
         }
         case "NFID": {
           const accounts = await this.nfidWalletService.connect();
+          this.setAccountAddress(accounts[0]);
+          resolve(accounts);
+          break;
+        }
+        case "web3auth": {
+          const accounts = await this.web3AuthWalletService.connect();
           this.setAccountAddress(accounts[0]);
           resolve(accounts);
           break;
