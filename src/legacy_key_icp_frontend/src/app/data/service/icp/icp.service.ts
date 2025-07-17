@@ -54,13 +54,13 @@ export class IcpService extends IcpRepository {
   proofOfHumanity(address: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       const host = environment.MOTOKO_CANISTER_HOST;
-      const userObject = await NFIDLogin(); 
+      const userObject = await NFIDLogin(host);
       const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
         agentOptions: ({
           host: host,
           callOptions: userObject,
-        })          
-      }); 
+        })
+      });
       await actor.setPOH();
     });
   }
@@ -73,28 +73,28 @@ export class IcpService extends IcpRepository {
   payLegacyKeySC(address: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       const host = environment.MOTOKO_CANISTER_HOST;
-      const userObject = await NFIDLogin(); 
+      const userObject = await NFIDLogin(host);
       const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
         agentOptions: ({
           host: host,
           callOptions: userObject,
-        })          
-      }); 
+        })
+      });
       await actor.setPay();
-            
+
     });
   }
 
   newMemberLegacyKeySC(address: string, amount: number, validators: any[], beneficiaries: any[]): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       const host = environment.MOTOKO_CANISTER_HOST;
-      const userObject = await NFIDLogin(); 
+      const userObject = await NFIDLogin(host);
       const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
         agentOptions: ({
           host: host,
           callOptions: userObject,
-        })          
-      }); 
+        })
+      });
       await actor.newMember(beneficiaries[0],validators[0],BigInt(amount),BigInt(10),BigInt(3));
     });
   }
@@ -102,13 +102,13 @@ export class IcpService extends IcpRepository {
   voteValidador(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       const host = environment.MOTOKO_CANISTER_HOST;
-      const userObject = await NFIDLogin(); 
+      const userObject = await NFIDLogin(host);
       const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
         agentOptions: ({
           host: host,
           callOptions: userObject,
-        })          
-      }); 
+        })
+      });
       await actor.voteValidador();
     });
   }
@@ -116,13 +116,13 @@ export class IcpService extends IcpRepository {
   withdrawHeir(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       const host = environment.MOTOKO_CANISTER_HOST;
-      const userObject = await NFIDLogin(); 
+      const userObject = await NFIDLogin(host);
       const actor = backendIDL.createActor(environment.MOTOKO_CANISTER_BACKEND_ID, {
         agentOptions: ({
           host: host,
           callOptions: userObject,
-        })          
-      }); 
+        })
+      });
       await actor.withDrawHeir();
 
     });

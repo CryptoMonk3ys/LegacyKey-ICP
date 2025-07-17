@@ -34,13 +34,13 @@
     "assert": "^2.1.0",
     "buffer": "^6.0.3",
     "empty-module": "^0.0.2",
-    "ic-auth": "^0.9.1",
+    "ic-auth": "^1.1.0",
     "process": "^0.11.10",
     "readable-stream": "^4.7.0",
     "rxjs": "~7.8.0",
     "stream-browserify": "^3.0.0",
     "tslib": "^2.3.0",
-    "web3": "^4.13.0",
+    "web3": "^4.16.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
