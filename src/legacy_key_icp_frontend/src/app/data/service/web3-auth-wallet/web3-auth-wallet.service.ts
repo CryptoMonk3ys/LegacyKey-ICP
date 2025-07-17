@@ -3,8 +3,6 @@ import { Web3Auth, WEB3AUTH_NETWORK, IProvider } from "@web3auth/modal";
 import { ethers } from "ethers";
 import { WalletRepository } from '../../../domain/repository/wallet.repository';
 
-declare let window: any;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +38,7 @@ export class Web3AuthWalletService extends WalletRepository {
     return new Promise<string[]>(async (resolve, reject) => {
       try {
         const provider = await this.web3auth.connect();
-        /* this.setAccountAddress(accounts[0]); */
+        //this.setAccountAddress(accounts[0]);
         if (this.web3auth.connected && provider)
           resolve([await this.getAccounts(provider)]);
       } catch (err) {

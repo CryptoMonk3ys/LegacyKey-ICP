@@ -46,29 +46,33 @@ import { IcpService } from '../data/service/icp/icp.service';
     VotoComponent,
     CobroComponent,
     LoaderDialog
-  ], imports: [CommonModule,
+  ],
+  imports: [
+    CommonModule,
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule], providers: [
-      {
-        provide: AlgorandRepository,
-        useClass: PureStakeService
-      },
-      {
-        provide: EthereumRepository,
-        useClass: EthereumService
-      },
-      {
-        provide: ExchangeRepository,
-        useClass: ExchangeService
-      },
-      {
-        provide: IcpRepository,
-        useClass: IcpService
-      },
-      provideHttpClient(withInterceptorsFromDi())
-    ]
+    ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: AlgorandRepository,
+      useClass: PureStakeService
+    },
+    {
+      provide: EthereumRepository,
+      useClass: EthereumService
+    },
+    {
+      provide: ExchangeRepository,
+      useClass: ExchangeService
+    },
+    {
+      provide: IcpRepository,
+      useClass: IcpService
+    },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
 })
 export class PresentationModule {
 }

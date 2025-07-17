@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-
 import { LoginWeb3UseCase } from '../../../domain/usecase/login-web3.use-case';
 import { IsPaidLegacyUseCase } from '../../../domain/usecase/is-paid-legacy.use-case';
 //import {isPaidLegacyKeySC} from '../../../data/service/ethereum/ethereum.service';
@@ -10,10 +9,10 @@ import { environment } from '../../../../environments/environment';
 
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: false
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: false
 })
 export class LoginComponent implements OnInit {
   constructor(
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   onMetamaskConnect() {
     this.loginWeb3UseCase
-      .execute("metamask")
+      .execute("web3auth")
       .then((accounts) => {
         //console.log(accounts);
         //this.goToNext("ethereum", accounts[0]);
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  onIcAuthConnect = async() => {
+  onIcAuthConnect = async () => {
     this.loginWeb3UseCase
       .execute("NFID")
       .then((accounts) => {
@@ -73,4 +72,29 @@ export class LoginComponent implements OnInit {
       }
     }).catch(e => console.error(e));
   }
+
+  /* getAccounts = async (provider: IProvider): Promise<any> => {
+    try {
+      const ethersProvider = new ethers.BrowserProvider(provider);
+      const signer = await ethersProvider.getSigner();
+
+      // Get user's Ethereum public address
+      const address = signer.getAddress();
+
+      return await address;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  getChainId = async (provider: IProvider): Promise<any> => {
+    try {
+      const ethersProvider = new ethers.BrowserProvider(provider);
+      // Get the connected Chain's ID
+      const networkDetails = await ethersProvider.getNetwork();
+      return networkDetails.name;
+    } catch (error) {
+      return error;
+    }
+  } */
 }
