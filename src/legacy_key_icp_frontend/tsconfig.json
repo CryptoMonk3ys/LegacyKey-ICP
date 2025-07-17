@@ -30,6 +30,7 @@
         "./node_modules/stream-browserify"
       ]
     },
+    "noImplicitAny": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
