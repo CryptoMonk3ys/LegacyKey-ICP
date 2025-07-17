@@ -55,7 +55,7 @@ export class ContractComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    
+
     this.getAccountUseCase.execute()
       .then(acc => {
         if (acc.address) {
@@ -64,12 +64,12 @@ export class ContractComponent implements OnInit {
           this.onAddBeneficiary();
         }
       });
-    
+
   }
 
 
   getContractData(account: string): void {
-    
+
     this.getDataLegacyUseCase.execute({
       walletChain: this.walletChain,
       walletAddress: account
@@ -77,16 +77,16 @@ export class ContractComponent implements OnInit {
       console.log("data", data);
       console.log("wallet", this.walletChain, account);
     }).catch(e => console.error(e));
-    
+
   }
 
   get beneficiaryArr(): FormArray {
-    
+
     return this.beneficiariesFormGroup.get('beneficiaries') as FormArray;
   }
 
   onAddBeneficiary(): void {
-    
+
     let fg = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -98,11 +98,11 @@ export class ContractComponent implements OnInit {
       sendInfo: false,
     });
     this.beneficiaryArr.push(fg);
-    
+
   }
 
   get validatorArr(): FormArray {
-    
+
     return this.validatorsFormGroup.get('validators') as FormArray;
   }
 
@@ -139,8 +139,8 @@ export class ContractComponent implements OnInit {
 
     this.showLoader();
 
-    let vali = [];
-    let bene = [];
+    let vali: any[] = [];
+    let bene: any[] = [];
 
     for (var i = 0; i < this.contract.beneficiaries.length; i++) {
       try {
